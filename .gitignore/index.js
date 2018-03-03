@@ -100,7 +100,7 @@ bot.on('message', message => {
         message.channel.sendEmbed(embed);
     }
 
-    if (message.content.startsWith(prefix + "rep")) {
+    if (message.content.startsWith(prefix + "5ntr")) {
         message.delete();
         let args = message.content.split(" ").slice(1);
         let thingToEcho = args.join(" ")
