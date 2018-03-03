@@ -16,11 +16,11 @@ bot.on('ready', function() {
 });
 
 bot.on("guildMemberAdd", member => {
-    member.guild.channels.find("name", "general").send(`Bienvenue dans la **PZH's Community**, ${member.user.username} !`)
+    member.guild.channels.find("name", "general").send(`Bienvenue dans la **PZH's Community**, ${member} !`)
 })
 
 bot.on("guildMemberRemove", member =>{
-    member.guild.channels.find("name", "general").send(`${member.user.username} vien de quitter la **PZH's Community** :/`)
+    member.guild.channels.find("name", "general").send(`${member} vien de quitter la **PZH's Community** :/`)
 })
 
 bot.login(process.env.TOKEN);
