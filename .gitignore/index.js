@@ -100,6 +100,13 @@ bot.on('message', message => {
         message.channel.sendEmbed(embed);
     }
 
+    if (message.content.startsWith(prefix + "rep")) {
+        message.delete();
+        let args = message.content.split(" ").slice(1);
+        let thingToEcho = args.join(" ")
+        message.channel.sendMessage(thingToEcho)
+    }
+
     bot.on('guildMemberAdd', member => {
         var role = member.guild.roles.find('name', 'Membre');
         member.addRole(role)
