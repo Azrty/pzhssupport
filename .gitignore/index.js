@@ -99,4 +99,9 @@ bot.on('message', message => {
             .setFooter("Toute ressemblance avec un autre bot serait qu'une pure coïncidence. Bon moment parmis la PZH's Community")
         message.channel.sendEmbed(embed);
     }
+
+    bot.on('guildMemberAdd', member => {
+        var role = member.guild.roles.find('name', 'Membre');
+        member.addRole(role)
+    }
 }})
