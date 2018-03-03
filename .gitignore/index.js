@@ -64,7 +64,7 @@ bot.on('message', message => {
             .addField(".support", "Une question ? Un problème ? Autre ? Fait cette commande", true)
             .addField(".xp", "Tu souhaites savoir t'es XP ? Fait cette commande", true)
             .addField(".info", "Information sur le Bot Support", true)
-            .addField("Apprend à coder un bot discord !", "Suivez les tuto de [PZH Codage](https://www.youtube.com/c/pzhcodage) sur sa chaîne youtube !", true)
+            .addField("Apprend à coder un bot discord !", "Suivez les tuto de [PZH](https://www.youtube.com/c/pzhcodage) sur sa chaîne youtube !", true)
             .setColor("0x48C9B0")
             .setFooter("Bon moment parmis la PZH's Community")
         message.channel.sendEmbed(embed);
@@ -78,8 +78,8 @@ bot.on('message', message => {
             .addField("Question", "Soon | Contacter un Fondateur, Administrateur ou Modérateur", true)
             .addField("Autre", "Soon | Contacter un Fondateur, Administrateur ou Modérateur", true)
             .setColor("0xF4D03F")
-            .addField("Apprend à coder un bot discord !", "Suivez les tuto de [PZH Codage](https://www.youtube.com/c/pzhcodage) sur sa chaîne youtube !", true)
-            .setFooter("La réponse de MhBurgerKing n'est pas immédiate, faites preuve de patience. :) Bon moment parmis la PZH's Community")
+            .addField("Apprend à coder un bot discord !", "Suivez les tuto de [PZH](https://www.youtube.com/c/pzhcodage) sur sa chaîne youtube !", true)
+            .setFooter("La réponse de PZH n'est pas immédiate, faites preuve de patience. :) Bon moment parmis la PZH's Community")
         message.channel.sendEmbed(embed);
     
 
@@ -90,12 +90,12 @@ bot.on('message', message => {
             .setTitle("INFO")
             .setDescription("Information du bot")
             .addField("Création", "Le 10/01/2018 à 17h17", true)
-            .addField("Créateur", "Crée par MhBurgerKing alias [PZH Codage](https://www.youtube.com/c/pzhcodage)", true)
+            .addField("Créateur", "Crée par [PZH](https://www.youtube.com/c/pzhcodage)", true)
             .addField("Version du bot", "Version 2.0.9", true)
             .addField("Dernière mise à jour:", "Le 03/03/2018 à 18:00", true)
-            .addField("à savoir", "Si vous cliquez sur [PZH Codage](https://www.youtube.com/c/pzhcodage), cela vous redirigera sur sa chaîne YouTube", true)
+            .addField("à savoir", "Si vous cliquez sur [PZH](https://www.youtube.com/c/pzhcodage), cela vous redirigera sur sa chaîne YouTube", true)
             .setColor("0xE74C3C")
-            .addField("Apprend à coder un bot discord !", "Suivez les tuto de [PZH Codage](https://www.youtube.com/c/pzhcodage) sur sa chaîne youtube !", true)
+            .addField("Apprend à coder un bot discord !", "Suivez les tuto de [PZH](https://www.youtube.com/c/pzhcodage) sur sa chaîne youtube !", true)
             .setFooter("Toute ressemblance avec un autre bot serait qu'une pure coïncidence. Bon moment parmis la PZH's Community")
         message.channel.sendEmbed(embed);
     }
