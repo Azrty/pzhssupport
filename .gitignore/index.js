@@ -103,5 +103,4 @@ bot.on('message', message => {
     bot.on('guildMemberAdd', member => {
         var role = member.guild.roles.find('name', 'Membre');
         member.addRole(role)
-    }
-}})
+})}})
