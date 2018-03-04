@@ -15,12 +15,6 @@ bot.on('ready', function() {
     console.log("Connected");
 });
 
-bot.on("guildMemberAdd", member => {
-    member.guild.channels.find("name", "general").send(`Bienvenue ${member} sur le discord de la **PZH's Community** !`)
-})
-
-bot.on("guildMemberRemove", member =>{
-    member.guild.channels.find("name", "general").send(`${member} a quitté le discord de la **PZH's Community**... à bientôt :(`)
 
 bot.login(process.env.TOKEN);
 
@@ -112,4 +106,10 @@ bot.on('message', message => {
 bot.on('guildMemberAdd', member => {
     var role = member.guild.roles.find('name', 'Membre');
     member.addRole(role)
-})}}})})
+
+bot.on("guildMemberAdd", member => {
+    member.guild.channels.find("name", "general").send(`Bienvenue ${member} sur le discord de la **PZH's Community** !`)
+    
+bot.on("guildMemberRemove", member =>{
+    member.guild.channels.find("name", "general").send(`${member.user.username} a quitté le discord de la **PZH's Community**... à bientôt :(`)
+})})})}}})
