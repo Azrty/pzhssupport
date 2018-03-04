@@ -15,14 +15,6 @@ bot.on('ready', function() {
     console.log("Connected");
 });
 
-bot.on("guildMemberAdd", member => {
-    member.guild.channels.find("name", "general").send(`Bienvenue dans la **PZH's Community**, ${member} !`)
-})
-
-bot.on("guildMemberRemove", member =>{
-    member.guild.channels.find("name", "general").send(`${member} vien de quitter la **PZH's Community** :/`)
-})
-
 bot.login(process.env.TOKEN);
 
 
@@ -121,7 +113,7 @@ bot.on("guildMemberAdd", member => {
     .setColor("0xE74C3C")
     .addField("Si tu souhaites créer ton propre bot discord:", "Suit les tuto de [PZH](https://www.youtube.com/c/pzhcodage) sur sa chaîne youtube !", true)
     .setFooter("Bon moment parmis la PZH's Community")
-message.author.sendEmbed(embed)
+message.member.sendEmbed(embed)
 member.guild.channels.find("name", "general").send(`Bienvenue **${member}** dans la **PZH's Community** ! Un message privée t'as été envoyé.`)
 
 bot.on("guildMemberRemove", member => {
