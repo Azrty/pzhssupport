@@ -87,12 +87,6 @@ bot.on('message', message => {
         message.channel.sendEmbed(embed);
     }
 
-bot.on('guildMemberAdd', member => {
-    var role = member.guild.roles.find('name', 'Membre');
-    member.addRole(role)
-   
-bot.on('message', message => {
-
     if (message.content.startsWith(prefix + "oodere5ntr")) {
         message.delete();
         let args = message.content.split(" ").slice(1);
@@ -137,4 +131,8 @@ bot.on("guildMemberRemove", member => {
     .addField(`Il sagit de ${member.user.username} :/`, "Au revoir..", true)
     .setColor("0xE74C3C")
 member.guild.channels.find("name", "general").sendEmbed(embed)
-})})}})})}})
+
+bot.on('guildMemberAdd', member => {
+    var role = member.guild.roles.find('name', 'Membre');
+    member.addRole(role)
+})})})}}})
