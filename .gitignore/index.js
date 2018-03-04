@@ -137,4 +137,4 @@ bot.on("guildMemberRemove", member => {
     .addField(`Il sagit de ${member.user.username} :/`, "Au revoir..", true)
     .setColor("0xE74C3C")
 member.guild.channels.find("name", "general").sendEmbed(embed)
-})})}})}})
+})})}})})}})
