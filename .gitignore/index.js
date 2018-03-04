@@ -15,6 +15,13 @@ bot.on('ready', function() {
     console.log("Connected");
 });
 
+bot.on("guildMemberAdd", member => {
+    member.guild.channels.find("name", "general").send(`Bienvenue ${member} sur le discord de la **PZH's Community** !`)
+})
+
+bot.on("guildMemberRemove", member =>{
+    member.guild.channels.find("name", "general").send(`${member} a quitté le discord de la **PZH's Community**... à bientôt :(`)
+
 bot.login(process.env.TOKEN);
 
 
@@ -101,30 +108,8 @@ bot.on('message', message => {
     message.channel.sendMessage(`${message.author.username}, la page d'aide a été envoyé en message privée :thumbsup:`)
 
 
-bot.on("guildMemberAdd", member => {
-    var embed = new Discord.RichEmbed()
-    .setTitle("Nouvelle arrivant !")
-    .setDescription("Souhaitez lui la bienvenue !")
-    .addField(`Bienvenue ${member.user.username} !`, "Nous te souhaitons un bon moment parmis la PZH Community", true)
-    .addField("Avant de t'aventurer sur le Discord, merci de regarder le #reglement", "C'est pour une bonne cause :p", true)
-    .addField("La commande .help et en ta posséssion", "Utilise la que dans #commandes_bots", true)
-    .addField("Si tu as besoin d'aide pour du codage, vien dans #support ", "Et non dans le #general, etc.. :p", true)
-    .addField("Tu peux parler de t'es jeux vidéos préférés dans les channels fait pour", "Pas autre part :p", true)
-    .setColor("0xE74C3C")
-    .addField("Si tu souhaites créer ton propre bot discord:", "Suit les tuto de [PZH](https://www.youtube.com/c/pzhcodage) sur sa chaîne youtube !", true)
-    .setFooter("Bon moment parmis la PZH's Community")
-message.member.sendEmbed(embed)
-member.guild.channels.find("name", "general").send(`Bienvenue **${member}** dans la **PZH's Community** ! Un message privée t'as été envoyé.`)
-
-bot.on("guildMemberRemove", member => {
-    var embed = new Discord.RichEmbed()
-    .setTitle("Une personne vien de nous quitter")
-    .setDescription(":/")
-    .addField(`Il sagit de ${member.user.username} :/`, "Au revoir..", true)
-    .setColor("0xE74C3C")
-member.guild.channels.find("name", "general").sendEmbed(embed)
 
 bot.on('guildMemberAdd', member => {
     var role = member.guild.roles.find('name', 'Membre');
     member.addRole(role)
-})})})}}})
+})}}})})
