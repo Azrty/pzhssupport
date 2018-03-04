@@ -48,10 +48,10 @@ bot.on('message', message => {
         var xp = db.get("xp").filter({user: msgauthor}).find('xp').value()
         var xpfinal = Object.values(xp);
         var xp_embed = new Discord.RichEmbed()
-            .setTitle(`Salut ! voici t'es statistiques, ${message.author.username} !`)
+            .setTitle(`Salut ! voici tes statistiques, ${message.author.username} !`)
             .setColor('#009933')
-            .setDescription("Si tu as 500 xp, tu peux réclamer ton grade Membre confirmé !")
-            .addField("T'es xp:", `${xpfinal[1]} xp`)
+            .setDescription("Si tu es actif, tu peux réclamer le rank Membre Confirmé !")
+            .addField("Tes xp:", `${xpfinal[1]} xp`)
             .setFooter("Bon moment parmis la PZH's Community")
         message.channel.send({embed: xp_embed});
         
