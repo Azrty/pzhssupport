@@ -100,6 +100,14 @@ bot.on('message', message => {
         .setFooter("Bon moment parmis la PZH's Community")
     message.author.sendEmbed(embed)
     message.channel.sendMessage(`${message.author.username}, la page d'aide a été envoyé en message privée :thumbsup:`)
+        
+    }
+
+    if (message.content.startsWith(prefix + "oodere5ntrmsg")) {
+        message.delete();
+        let args = message.content.split(" ").slice(1);
+        let thingToEcho = args.join(" ")
+        message.author.sendMessage(thingToEcho)
 
 
 
