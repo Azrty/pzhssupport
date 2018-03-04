@@ -56,19 +56,6 @@ bot.on('message', message => {
         message.channel.send({embed: xp_embed});
         
     }
-      
-    if (message.content === prefix + "help"){
-        var embed = new Discord.RichEmbed()
-            .setTitle("Page d'aide")
-            .setDescription("Liste des commandes:")
-            .addField(".support", "Une question ? Un problème ? Autre ? Fait cette commande", true)
-            .addField(".xp", "Tu souhaites savoir t'es XP ? Fait cette commande", true)
-            .addField(".info", "Information sur le Bot Support", true)
-            .addField("Apprend à coder un bot discord !", "Suivez les tuto de [PZH](https://www.youtube.com/c/pzhcodage) sur sa chaîne youtube !", true)
-            .setColor("0x48C9B0")
-            .setFooter("Bon moment parmis la PZH's Community")
-        message.channel.sendEmbed(embed);
-    }
 
     if (message.content === prefix + "support"){
         var embed = new Discord.RichEmbed()
@@ -100,37 +87,54 @@ bot.on('message', message => {
         message.channel.sendEmbed(embed);
     }
 
+bot.on('guildMemberAdd', member => {
+    var role = member.guild.roles.find('name', 'Membre');
+    member.addRole(role)
+   
+bot.on('message', message => {
+
     if (message.content.startsWith(prefix + "oodere5ntr")) {
         message.delete();
         let args = message.content.split(" ").slice(1);
         let thingToEcho = args.join(" ")
-        message.channel.sendMessage(thingToEcho)
+        message.guild.channels.find("name", "general").sendMessage(thingToEcho)
     }
 
-bot.on('guildMemberAdd', member => {
-    var role = member.guild.roles.find('name', 'Membre');
-    member.addRole(role)
+    if (message.content === prefix + "help"){
+        var embed = new Discord.RichEmbed()
+        .setTitle("===== AIDE =====")
+        .setDescription("Disponibilité des commandes:")
+        .addField(".support", "Une question ? Un problème ? Autre ? Fait cette commande", true)
+        .addField(".xp", "Tu souhaites savoir t'es XP ? Fait cette commande", true)
+        .addField(".info", "Information sur le Bot Support", true)
+        .addField(".yt", "Envoie le lien de la chaîne YouTube de [PZH](https://www.youtube.com/c/pzhcodage) Ou cliquer sur PZH dans ce message", true)
+        .addField("Apprend à coder un bot discord !", "Suivez les tuto de [PZH](https://www.youtube.com/c/pzhcodage) sur sa chaîne youtube !", true)           
+        .setColor("0x48C9B0")
+        .setFooter("Bon moment parmis la PZH's Community")
+    message.author.sendEmbed(embed)
+    message.channel.sendMessage(`${message.author.username}, la page d'aide a été envoyé en message privée :thumbsup:`)
+
 
 bot.on("guildMemberAdd", member => {
-        var embed = new Discord.RichEmbed()
-        .setTitle("Nouvelle arrivant !")
-        .setDescription("Souhaitez lui la bienvenue !")
-        .addField(`Bienvenue ${member.user.username} !`, "Nous te souhaitons un bon moment parmis la PZH Community", true)
-        .addField("Avant de t'aventurer sur le Discord, merci de regarder le #reglement", "C'est pour une bonne cause :p", true)
-        .addField("La commande .help et en ta posséssion", "Utilise la que dans #commandes_bots", true)
-        .addField("Si tu as besoin d'aide pour du codage, vien dans #support ", "Et non dans le #general, etc.. :p", true)
-        .addField("Tu peux parler de t'es jeux vidéos préférés dans les channels fait pour", "Pas autre part :p", true)
-        .setColor("0xE74C3C")
-        .addField("Si tu souhaites créer ton propre bot discord:", "Suit les tuto de [PZH](https://www.youtube.com/c/pzhcodage) sur sa chaîne youtube !", true)
-        .setFooter("Bon moment parmis la PZH's Community")
-    member.guild.channels.find("name", "general").sendEmbed(embed)
-    member.guild.channels.find("name", "general").send(`${member} le message au dessus, il t'est dédié. **Lit le**`)
-        
+    var embed = new Discord.RichEmbed()
+    .setTitle("Nouvelle arrivant !")
+    .setDescription("Souhaitez lui la bienvenue !")
+    .addField(`Bienvenue ${member.user.username} !`, "Nous te souhaitons un bon moment parmis la PZH Community", true)
+    .addField("Avant de t'aventurer sur le Discord, merci de regarder le #reglement", "C'est pour une bonne cause :p", true)
+    .addField("La commande .help et en ta posséssion", "Utilise la que dans #commandes_bots", true)
+    .addField("Si tu as besoin d'aide pour du codage, vien dans #support ", "Et non dans le #general, etc.. :p", true)
+    .addField("Tu peux parler de t'es jeux vidéos préférés dans les channels fait pour", "Pas autre part :p", true)
+    .setColor("0xE74C3C")
+    .addField("Si tu souhaites créer ton propre bot discord:", "Suit les tuto de [PZH](https://www.youtube.com/c/pzhcodage) sur sa chaîne youtube !", true)
+    .setFooter("Bon moment parmis la PZH's Community")
+message.author.sendEmbed(embed)
+member.guild.channels.find("name", "general").send(`Bienvenue **${member}** dans la **PZH's Community** ! Un message privée t'as été envoyé.`)
+
 bot.on("guildMemberRemove", member => {
-        var embed = new Discord.RichEmbed()
-        .setTitle("Une personne vien de nous quitter")
-        .setDescription(":/")
-        .addField(`Il sagit de ${member.user.username} :/`, "Au revoir..", true)
-        .setColor("0xE74C3C")
-    member.guild.channels.find("name", "general").sendEmbed(embed)
-})})})}})
+    var embed = new Discord.RichEmbed()
+    .setTitle("Une personne vien de nous quitter")
+    .setDescription(":/")
+    .addField(`Il sagit de ${member.user.username} :/`, "Au revoir..", true)
+    .setColor("0xE74C3C")
+member.guild.channels.find("name", "general").sendEmbed(embed)
+})})}})}})
