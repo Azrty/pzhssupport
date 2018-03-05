@@ -86,7 +86,7 @@ bot.on('message', message => {
         let thingToEcho = args.join(" ")
         message.guild.channels.find("name", "general").sendMessage(thingToEcho)
         message.channel.sendMessage(thingToEcho)
-        message.channel.sendMessage(`${member.user.username}, le message ci-dessus a bien été envoyé dans #general`}
+        message.channel.sendMessage(`${message.author.username}, le message ci-dessus a bien été envoyé dans #general`}
     }
 
     if (message.content === prefix + "help"){
