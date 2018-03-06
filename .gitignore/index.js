@@ -11,40 +11,63 @@ db.defaults({ histoires: [], xp: []}).write()
 var prefix = (".")
 
 bot.on('ready', function() {
-    bot.user.setGame("Aide: .help");
-    console.log("Connected");
+    bot.user.setActivity(".help | By PZH#8058");
+    console.log("Connecté avec succès");
 });
 
 
 bot.login(process.env.TOKEN);
 
 bot.on('message', message => {
+    let command = message.content.split(" ")[0];
+    const args = message.content.slice(prefix.length).split(/ +/);
+    command = args.shift().toLowerCase();
 
-    var msgauthor = message.author.id;
-    
-        if(message.author.bot)return;
-    
-        if(!db.get("xp").find({user: msgauthor}).value()){
-            db.get("xp").push({user: msgauthor, xp: 1}).write();
-        }else{
-            var userxpdb = db.get("xp").filter({user: msgauthor}).find('xp').value();
-            console.log(userxpdb);
-            var userxp = Object.values(userxpdb)
-            console.log(userxp)
-            console.log(`Nombre d'xp : ${userxp[1]}`)
-    
-            db.get("xp").find({user: msgauthor}).assign({user: msgauthor, xp: userxp[1] += 1}).write();
-    
-        if (message.content === prefix + "xp"){
-            var xp = db.get("xp").filter({user: msgauthor}).find('xp').value()
-            var xpfinal = Object.values(xp);
-            var xp_embed = new Discord.RichEmbed()
-                .setTitle(`Salut ! voici tes statistiques, ${message.author.username} !`)
-                .setColor('#009933')
-                .setDescription("Si tu es actif, tu peux réclamer le rank Membre Confirmé !")
-                .addField("Tes xp:", `${xpfinal[1]} xp`)
-                .setFooter("Bon moment parmis la PZH's Community")
-            message.channel.send({embed: xp_embed});
+    if (command === "kick") {
+        let modRole = message.guild.roles.find("name", "Modérateurs");
+        if(!message.member.roles.has(modRole.id)) {
+            return message.reply("Tu n'as pas la permission de faire cette commande.").catch(console.error);
+        }
+        if(message.mentions.users.size === 0) {
+            return message.reply("Merci de mentionner l'utilisateur à expluser.").catch(console.error);
+        }
+        let kickMember = message.guild.member(message.mentions.users.first());
+        if(!kickMember) {
+            return message.reply("Cet utilisateur est introuvable ou impossible à expulser.")
+        }
+        if(!message.guild.member(bot.user).hasPermission("KICK_MEMBERS")) {
+            return message.reply("Je n'ai pas la permission KICK_MEMBERS pour faire ceci.").catch(console.error);
+        }
+        kickMember.kick().then(member => {
+            message.reply(`${member.user.username} a été expulsé avec succès.`).catch(console.error);
+            message.guild.channels.find("name", "general").send(`**${member.user.username}** a été expulsé du discord par **${message.author.username}**`)
+        }).catch(console.error)
+        
+    }
+
+    if (command === "ban") {
+        let modRole = message.guild.roles.find("name", "Modérateurs");
+        if(!message.member.roles.has(modRole.id)) {
+            return message.reply("Tu n'as pas la permission de faire cette commande.").catch(console.error);
+        }
+        const member = message.mentions.members.first();
+        if (!member) return message.reply("Merci de mentionner l'utilisateur à bannir.");
+        member.ban().then(member => {
+            message.reply(`${member.user.username} a été banni avec succès.`).catch(console.error);
+            message.guild.channels.find("name", "general").send(`**${member.user.username}** a été banni du discord par **${message.author.username}**`)
+        }).catch(console.error)
+
+    }
+
+    if (message.content === prefix + "yt"){
+        var embed = new Discord.RichEmbed()
+        .setTitle("YouTube")
+        .setDescription("Chaîne Codage:")
+        .addField("PZH", "[Cliquez ici](https://www.youtube.com/c/pzhcodage)", true)       
+        .setColor("0xFF0000")
+        .setFooter("PZH est un YouTubeur qui code des bots discord.")
+    message.channel.sendEmbed(embed)
+
     }
 
     if (message.content === prefix + "support"){
@@ -81,80 +104,62 @@ bot.on('message', message => {
         var embed = new Discord.RichEmbed()
         .setTitle("===== AIDE =====")
         .setDescription("Disponibilité des commandes:")
-        .addField(".support", "Une question ? Un problème ? Autre ? Fait cette commande", true)
-        .addField(".xp", "Tu souhaites savoir t'es XP ? Fait cette commande", true)
         .addField(".info", "Information sur le Bot Support", true)
-        .addField(".yt", "Envoie le lien de la chaîne YouTube de [PZH](https://www.youtube.com/c/pzhcodage) Ou cliquer sur PZH dans ce message", true)
-        .addField("Apprend à coder un bot discord !", "Suivez les tuto de [PZH](https://www.youtube.com/c/pzhcodage) sur sa chaîne youtube !", true)           
-        .setColor("0x48C9B0")
+        .addField(".yt", "Envoie le lien de la chaîne YouTube de [PZH](https://www.youtube.com/c/pzhcodage) Ou cliquer sur PZH dans ce message", true)          
+        .setColor("0x04B404")
         .setFooter("Bon moment parmis la PZH's Community")
     message.author.sendEmbed(embed)
     message.channel.sendMessage(`${message.author.username}, la page d'aide a été envoyé en message privée :thumbsup:`)
+        var embedtwo = new Discord.RichEmbed()
+        .setTitle("Modération")
+        .setDescription("Commande Modérateur")
+        .addField(".ban", "Bannir un utilisateur.", true)
+        .addField(".kick", "Expulser un utilisateur.", true)      
+        .setColor("0xFF8000")
+    message.author.sendEmbed(embedtwo)
+        var embedthree = new Discord.RichEmbed()
+        .setTitle("Administration")
+        .setDescription("Commande Administrateur")
+        .addField(".say", "Faire parler le bot", true)
+        .addField(".sayge", "Faire parler le bot via un channel externe", true)      
+        .setColor("0xFF0000")
+    message.author.sendEmbed(embedthree)
+        var embedfour = new Discord.RichEmbed()
+        .setTitle("UM")
+        .setDescription("Update | Modification")
+        .addField("Cmd .support supprimé.", "Raison: innutile.", true)
+        .addField("Cmd .xp supprimé.", "Raison: Innutile et bouffeur de mémoire.", true)         
+        .setColor("0xFE2E2E")
+    message.author.sendEmbed(embedfour)
+        var embedfive = new Discord.RichEmbed()
+        .setTitle("Information")
+        .setDescription("Liste des informations:")
+        .addField("Apprend à coder un bot discord !", "Suivez les tuto de [PZH](https://www.youtube.com/c/pzhcodage) sur sa chaîne youtube !", true)       
+        .setColor("0xFFFF00")
+        .setFooter("Bon moment parmis la PZH's Community")
+    message.author.sendEmbed(embedfive)
 
     }
     
     if (message.content.startsWith(prefix + "say")) {
-        let modRole = message.guild.roles.find("name", "Modérateurs");
+        let modRole = message.guild.roles.find("name", "Admins");
         if(message.member.roles.has(modRole.id)) {
         let args = message.content.split(" ").slice(1);
         let thingToEcho = args.join(" ")
         message.channel.sendMessage(thingToEcho)
     } else {
         message.reply(`tu n'as pas la permission de faire cette commande.`)
-            
 
-bot.on('message', message => {
-    let command = message.content.split(" ")[0];
-    const args = message.content.slice(prefix.length).split(/ +/);
-    command = args.shift().toLowerCase();
-
-
-    if (command === "kick") {
-        let modRole = message.guild.roles.find("name", "Modérateurs");
-        if(!message.member.roles.has(modRole.id)) {
-            return message.reply("Tu n'as pas la permission de faire cette commande.").catch(console.error);
-        }
-        if(message.mentions.users.size === 0) {
-            return message.reply("Merci de mentionner l'utilisateur à expulser.").catch(console.error);
-        }
-        let kickMember = message.guild.member(message.mentions.users.first());
-        if(!kickMember) {
-            return message.reply("Cet utilisateur est introuvable ou impossible à expulser.");
-        }
-        if(!message.guild.member(bot.user).hasPermission("KICK_MEMBERS")) {
-            return message.reply("Je n'ai pas la permission KICK_MEMBERS pour faire ceci.").catch(console.error);
-        }
-        kickMember.kick().then(member => {
-            message.reply(`${member.user.username} a été expulsé avec succès.`).catch(console.error);
-        }).catch(console.error)
-    
     }
 
-    if (command === "ban") {
-        let modRole = message.guild.roles.find("name", "Modérateurs");
-        if(!message.member.roles.has(modRole.id)) {
-            return message.reply("Tu n'as pas la permission de faire cette commande.").catch(console.error);
-        }
-        const member = message.mentions.members.first();
-        if (!member) return message.reply("Merci de mentionner l'utilisateur à bannir.");
-        member.ban().then(member => {
-            message.reply(`${member.user.username} a été banni avec succès.`).catch(console.error);
-        member.ban({
-            days: args[1] || null,
-            reason: `Vous avez été banni`
-        })
+    if (message.content.startsWith(prefix + "sayge")) {
+        let modRole = message.guild.roles.find("name", "Admins");
+        if(message.member.roles.has(modRole.id)) {
+        let args = message.content.split(" ").slice(1);
+        let thingToEcho = args.join(" ")
+        message.guild.channels.find("name", "general").send(thingToEcho)
+        message.channel.sendMessage(`${message.author.username}, le message a bien été envoyé dans le channel #general`)
+    } else {
+        message.reply(`tu n'as pas la permission de faire cette commande.`)
 
-    
-        
-
-
-bot.on('guildMemberAdd', member => {
-    var role = member.guild.roles.find('name', 'Membre');
-    member.addRole(role)
-
-bot.on("guildMemberAdd", member => {
-    member.guild.channels.find("name", "general").send(`Bienvenue ${member} sur le discord de la **PZH's Community** !`)
-    
-bot.on("guildMemberRemove", member =>{
-    member.guild.channels.find("name", "general").send(`${member.user.username} a quitté le discord de la **PZH's Community**... à bientôt :(`)
-})})})})}})}}}})
+}}}})
