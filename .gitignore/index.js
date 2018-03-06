@@ -66,6 +66,7 @@ bot.on('message', message => {
         .addField("PZH", "[Cliquez ici](https://www.youtube.com/c/pzhcodage)", true)       
         .setColor("0xFF0000")
         .setFooter("PZH est un YouTubeur qui code des bots discord.")
+        .setTimestamp()
     message.channel.sendEmbed(embed)
 
     }
@@ -80,6 +81,7 @@ bot.on('message', message => {
             .setColor("0xF4D03F")
             .addField("Apprend à coder un bot discord !", "Suivez les tuto de [PZH](https://www.youtube.com/c/pzhcodage) sur sa chaîne youtube !", true)
             .setFooter("La réponse de PZH n'est pas immédiate, faites preuve de patience. :) Bon moment parmis la PZH's Community")
+            .setTimestamp()
         message.channel.sendEmbed(embed);
     
 
@@ -97,6 +99,7 @@ bot.on('message', message => {
             .setColor("0xE74C3C")
             .addField("Apprend à coder un bot discord !", "Suivez les tuto de [PZH](https://www.youtube.com/c/pzhcodage) sur sa chaîne youtube !", true)
             .setFooter("Toute ressemblance avec un autre bot serait qu'une pure coïncidence. Bon moment parmis la PZH's Community")
+            .setTimestamp()
         message.channel.sendEmbed(embed);
     }
 
@@ -137,6 +140,7 @@ bot.on('message', message => {
         .addField("Apprend à coder un bot discord !", "Suivez les tuto de [PZH](https://www.youtube.com/c/pzhcodage) sur sa chaîne youtube !", true)       
         .setColor("0xFFFF00")
         .setFooter("Bon moment parmis la PZH's Community")
+        .setTimestamp()
     message.author.sendEmbed(embedfive)
 
     }
