@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const bot = new Discord.Client();
 const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
+const config = require("./config.json");
 
 const adapter = new FileSync('database.json');
 const db = low(adapter);
@@ -11,12 +12,24 @@ db.defaults({ histoires: [], xp: []}).write()
 var prefix = (".")
 
 bot.on('ready', function() {
-    bot.user.setActivity(".help | By PZH#8058");
+    bot.user.setActivity("MAINTENANCE EN COURS");
     console.log("Connecté avec succès");
 });
 
 
-bot.login(process.env.TOKEN);
+bot.login("NDAwNjU3MTIwMzk3MjMwMDgw.DYAUUg.Mg0nPrNQDY9n5CqDc9irSvfVrMc");
+
+bot.on('message', message => {
+
+    if(message.content === prefix + "infodiscord")
+        var embed = new Discord.RichEmbed()
+            .setDescription("Information du Discord")
+            .addField("Nom du Discord", message.guild.name)
+            .addField("Crée le", message.guild.createdAt)
+            .addField("Tu as rejoin le", message.member.joinedAt)
+            .addField("Utilisateurs sur le discord", message.guild.memberCount)
+            .setColor("0x0000FF")
+        message.channel.sendEmbed(embed);
 
 bot.on('message', message => {
     let command = message.content.split(" ")[0];
@@ -68,22 +81,6 @@ bot.on('message', message => {
         .setFooter("PZH est un YouTubeur qui code des bots discord.")
         .setTimestamp()
     message.channel.sendEmbed(embed)
-
-    }
-
-    if (message.content === prefix + "support"){
-        var embed = new Discord.RichEmbed()
-            .setTitle("SUPPORT")
-            .setDescription("Page de support")
-            .addField("Problème", "Soon | Contacter un Fondateur, Administrateur ou Modérateur", true)
-            .addField("Question", "Soon | Contacter un Fondateur, Administrateur ou Modérateur", true)
-            .addField("Autre", "Soon | Contacter un Fondateur, Administrateur ou Modérateur", true)
-            .setColor("0xF4D03F")
-            .addField("Apprend à coder un bot discord !", "Suivez les tuto de [PZH](https://www.youtube.com/c/pzhcodage) sur sa chaîne youtube !", true)
-            .setFooter("La réponse de PZH n'est pas immédiate, faites preuve de patience. :) Bon moment parmis la PZH's Community")
-            .setTimestamp()
-        message.channel.sendEmbed(embed);
-    
 
     }
 
@@ -166,4 +163,4 @@ bot.on('message', message => {
     } else {
         message.reply(`tu n'as pas la permission de faire cette commande.`)
 
-}}}})
+}}}})})
