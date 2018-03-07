@@ -11,24 +11,12 @@ db.defaults({ histoires: [], xp: []}).write()
 var prefix = (".")
 
 bot.on('ready', function() {
-    bot.user.setActivity(".help | By PZH#8058");
+    bot.user.setActivity("SOON");
     console.log("Connecté avec succès");
 });
 
 
 bot.login(process.env.TOKEN);
-
-bot.on('message', message => {
-
-    if(message.content === prefix + "infodiscord")
-        var embed = new Discord.RichEmbed()
-            .setDescription("Information du Discord")
-            .addField("Nom du Discord", message.guild.name)
-            .addField("Crée le", message.guild.createdAt)
-            .addField("Tu as rejoin le", message.member.joinedAt)
-            .addField("Utilisateurs sur le discord", message.guild.memberCount)
-            .setColor("0x0000FF")
-        message.channel.sendEmbed(embed);
 
 bot.on('message', message => {
     let command = message.content.split(" ")[0];
@@ -162,4 +150,18 @@ bot.on('message', message => {
     } else {
         message.reply(`tu n'as pas la permission de faire cette commande.`)
 
-}}}})})
+}}}})
+
+bot.on('message', message => {
+
+    if(message.content === prefix + "infodiscord")
+        var embed = new Discord.RichEmbed()
+            .setDescription("Information du Discord")
+            .addField("Nom du Discord", message.guild.name)
+            .addField("Crée le", message.guild.createdAt)
+            .addField("Tu as rejoin le", message.member.joinedAt)
+            .addField("Utilisateurs sur le discord", message.guild.memberCount)
+            .setColor("0x0000FF")
+        message.channel.sendEmbed(embed);
+
+})
