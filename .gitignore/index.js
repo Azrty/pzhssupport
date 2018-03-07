@@ -11,7 +11,7 @@ db.defaults({ histoires: [], xp: []}).write()
 var prefix = (".")
 
 bot.on('ready', function() {
-    bot.user.setActivity("MAINTENANCE EN COURS");
+    bot.user.setActivity(".help | By PZH#8058");
     console.log("Connecté avec succès");
 });
 
