@@ -26,7 +26,7 @@ bot.on("guildMemberAdd", member => {
             .addField("Ma commande est .help", "Si tu souhaites savoir mes fonctionnalitées")
             .addField(`Nombre d'utilisateur sur le discord après l'arrivée de ${member}`, message.guild.memberCount)
             .setColor("0x04B404")
-        message.channel.sendEmbed(embed);
+        message.guild.channels.find("name", "general").sendEmbed(embed)
 })
 
 bot.on("guildMemberRemove", member =>{
@@ -36,7 +36,7 @@ bot.on("guildMemberRemove", member =>{
             .addField("Au revoir...", "Nous épérons vous revoir bientôt.")
             .addField(`Nombre d'utilisateur sur le discord après le départ de ${member}`, message.guild.memberCount)
             .setColor("0xB40404")
-        message.channel.sendEmbed(embed);
+        message.guild.channels.find("name", "general").sendEmbed(embed)
 })
 
 bot.on('message', message => {
