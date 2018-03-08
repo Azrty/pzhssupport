@@ -18,6 +18,27 @@ bot.on('ready', function() {
 
 bot.login(process.env.TOKEN);
 
+bot.on("guildMemberAdd", member => {
+        var embed = new Discord.RichEmbed()
+            .setDescription("Activités")
+            .addField("Un nouvelle arrivant !", `Il sagit de ${member} !`)
+            .addField("Bienvenue parmis la PZH's Community", "Si tu as des questions, n'hésite pas")
+            .addField("Ma commande est .help", "Si tu souhaites savoir mes fonctionnalitées")
+            .addField(`Nombre d'utilisateur sur le discord après l'arrivée de ${member}`, message.guild.memberCount)
+            .setColor("0x04B404")
+        message.channel.sendEmbed(embed);
+})
+
+bot.on("guildMemberRemove", member =>{
+        var embed = new Discord.RichEmbed()
+            .setDescription("Activités")
+            .addField("Un utilisateur vien de quitter", `Il sagit de ${member}...`)
+            .addField("Au revoir...", "Nous épérons vous revoir bientôt.")
+            .addField(`Nombre d'utilisateur sur le discord après le départ de ${member}`, message.guild.memberCount)
+            .setColor("0xB40404")
+        message.channel.sendEmbed(embed);
+})
+
 bot.on('message', message => {
     let command = message.content.split(" ")[0];
     const args = message.content.slice(prefix.length).split(/ +/);
