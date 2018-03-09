@@ -20,6 +20,7 @@ function play(connection, message) {
 var servers = {};
 
 bot.on("ready", function() {
+    bot.user.setActivity(".help | By PZH#8058")
     console.log("Connecté");
 });
 
