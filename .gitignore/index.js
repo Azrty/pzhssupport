@@ -239,7 +239,7 @@ bot.on('message', message => {
             .setColor("0xDF01D7")
             .setFooter("Les recherches ne sont pas prit en compte ( exemple:.play Musique 2018 ) Seulement les liens ! ( ex: https://www.youtube.com/watch?v=ooooo")
             .setTimestamp()
-    message.author.sendEmbed(embedsix)
+    message.channel.sendEmbed(embedsix)
 
 
 
