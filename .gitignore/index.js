@@ -229,19 +229,6 @@ bot.on('message', message => {
     
     }
 
-    if (message.content === prefix + "musique")
-        var embedsix = new Discord.RichEmbed()
-            .setTitle("Musique [ Nouveau ]")
-            .setDescription("Commande musique:")
-            .addField(".play", "Ecouter une musique YouTube | Vous pouvez ajouter plusieurs musique avec le .play afin de créer un playlist", true)
-            .addField(".skip", "Passer à la musique suivante", true)
-            .addField(".stop", "Arrêter la musique", true)             
-            .setColor("0xDF01D7")
-            .setFooter("Les recherches ne sont pas prit en compte ( exemple:.play Musique 2018 ) Seulement les liens ! ( ex: https://www.youtube.com/watch?v=ooooo")
-            .setTimestamp()
-        message.channel.sendEmbed(embedsix)
-
-
 
     if (message.content.startsWith(prefix + "sayge")) {
         let modRole = message.guild.roles.find("name", "Admins");
@@ -273,5 +260,19 @@ bot.on('message', message => {
 
     if (message.content === prefix + "avatar") {
         message.reply(message.author.avatarURL)
+
+    }
+
+    if (message.content === prefix + "musique")
+        var embedsix = new Discord.RichEmbed()
+            .setTitle("Musique [ Nouveau ]")
+            .setDescription("Commande musique:")
+            .addField(".play", "Ecouter une musique YouTube | Vous pouvez ajouter plusieurs musique avec le .play afin de créer un playlist", true)
+            .addField(".skip", "Passer à la musique suivante", true)
+            .addField(".stop", "Arrêter la musique", true)             
+            .setColor("0xDF01D7")
+            .setFooter("Les recherches ne sont pas prit en compte ( exemple:.play Musique 2018 ) Seulement les liens ! ( ex: https://www.youtube.com/watch?v=ooooo")
+            .setTimestamp()
+        message.channel.sendEmbed(embedsix)
       
-}})
+})
