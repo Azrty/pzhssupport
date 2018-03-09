@@ -1,30 +1,80 @@
 const Discord = require('discord.js');
-const bot = new Discord.Client();
-const low = require('lowdb')
-const FileSync = require('lowdb/adapters/FileSync')
+var bot = new Discord.Client();
+var prefix = (".");
+const YTDL = require("ytdl-core");
+bot.login(process.env.TOKEN);
 
-const adapter = new FileSync('database.json');
-const db = low(adapter);
+function play(connection, message) {
+    var server = servers[message.guild.id];
 
-db.defaults({ histoires: [], xp: []}).write()
+    server.dispatcher = connection.playStream(YTDL(server.queue[0], {filter: "audioonly"}));
 
-var prefix = (".")
+    server.queue.shift();
 
-bot.on('ready', function() {
-    bot.user.setActivity(".help | By PZH#8058");
-    console.log("Connecté avec succès");
+    server.dispatcher.on("end", function() {
+        if (server.queue[0]) play(connection, message);
+        else connection.disconnect();
+    });
+}
+
+var servers = {};
+
+bot.on("ready", function() {
+    console.log("Connecté");
 });
 
 
-bot.login(process.env.TOKEN);
+bot.on("message", function(message) {
+    if (message.author.equals(bot.user)) return;
+
+    if (!message.content.startsWith(prefix)) return;
+
+    var args = message.content.substring(prefix.length).split(" ");
+
+    switch (args[0].toLowerCase()) {
+        case "play":
+            if (!args[1]) {
+                message.channel.sendMessage("Merci d'envoyer le lien.");
+                return;
+            }
+
+            if (!message.member.voiceChannel) {
+                message.channel.sendMessage("Tu dois être dans un channel vocal.");
+                return;
+            }
+
+            if(!servers[message.guild.id]) servers[message.guild.id] = {
+                queue: []
+            };
+
+            var server = servers[message.guild.id];
+
+            server.queue.push(args[1]);
+
+            if (!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection) {
+                play(connection, message);
+            });
+            break;
+        case "skip":
+            var server = servers[message.guild.id];
+
+            if (server.dispatcher) server.dispatcher.end();
+            break;
+        case "stop":
+            var server = servers[message.guild.id];
+
+            if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
+            break;
+    }
+});
 
 bot.on("guildMemberAdd", member => {
     var embed = new Discord.RichEmbed()
         .setDescription("Activités")
-        .addField("Un nouvelle arrivant !", `Il sagit de ${member} !`)
+        .addField("Un nouvelle utilisateur vien d'arriver !", `Il sagit de ${member} !`)
         .addField("Bienvenue parmis la PZH's Community", "Si tu as des questions, n'hésite pas")
-        .addField("Ma commande est .help", "Si tu souhaites savoir mes fonctionnalitées")
-        .addField(`Nombre d'utilisateur sur le discord après l'arrivée de ${member.user.username}`, member.guild.memberCount)
+        .addField("Ma commande est .help", "Si tu souhaites savoir mes fonctionnalitées.")
+        .addField(`Nombre d'utilisateurs sur le discord après l'arrivée de ${member.user.username}`, member.guild.memberCount)
         .setColor("0x04B404")
     member.guild.channels.find("name", "general").sendEmbed(embed)
 })
@@ -33,8 +83,8 @@ bot.on("guildMemberRemove", member =>{
     var embed = new Discord.RichEmbed()
         .setDescription("Activités")
         .addField("Un utilisateur vien de quitter", `Il sagit de ${member}...`)
-        .addField("Au revoir...", "Nous épérons vous revoir bientôt.")
-        .addField(`Nombre d'utilisateur sur le discord après le départ de ${member.user.username}`, member.guild.memberCount)
+        .addField("Au revoir...", "Nous espérons vous revoir bientôt.")
+        .addField(`Nombre d'utilisateurs sur le discord après le départ de ${member.user.username}`, member.guild.memberCount)
         .setColor("0xB40404")
     member.guild.channels.find("name", "general").sendEmbed(embed)
 })
@@ -84,6 +134,8 @@ bot.on('message', message => {
         }).catch(console.error)
 
     }
+
+    
 
     if (message.content === prefix + "yt"){
         var embed = new Discord.RichEmbed()
@@ -164,7 +216,7 @@ bot.on('message', message => {
     } else {
         message.reply(`tu n'as pas la permission de faire cette commande.`)
 
-    }
+
 
     if (message.content.startsWith(prefix + "sayge")) {
         let modRole = message.guild.roles.find("name", "Admins");
@@ -176,18 +228,25 @@ bot.on('message', message => {
     } else {
         message.reply(`tu n'as pas la permission de faire cette commande.`)
 
-}}}})
+}}}}
+
+})
 
 bot.on('message', message => {
 
     if(message.content === prefix + "infodiscord")
-        var embed = new Discord.RichEmbed()
-            .setDescription("Information du Discord")
-            .addField("Nom du Discord", message.guild.name)
-            .addField("Crée le", message.guild.createdAt)
-            .addField("Tu as rejoin le", message.member.joinedAt)
-            .addField("Utilisateurs sur le discord", message.guild.memberCount)
-            .setColor("0x0000FF")
-        message.channel.sendEmbed(embed);
+    var embed = new Discord.RichEmbed()
+        .setDescription("Information du Discord")
+        .addField("Nom du Discord", message.guild.name)
+        .addField("Crée le", message.guild.createdAt)
+        .addField("Tu as rejoin le", message.member.joinedAt)
+        .addField("Utilisateurs sur le discord", message.guild.memberCount)
+        .setColor("0x0000FF")
+    message.channel.sendEmbed(embed)   
+    
 
-})
+
+    if (message.content === prefix + "avatar") {
+        message.reply(message.author.avatarURL)
+      
+}})
