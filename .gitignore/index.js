@@ -183,7 +183,7 @@ bot.on('message', message => {
         .addField(".skip", "Passer à la musique suivante", true)
         .addField(".stop", "Arrêter la musique", true)             
         .setColor("0xDF01D7")
-        .setFooter("Bon moment parmis la PZH's Community")
+        .setFooter("Les recherches ne sont pas prit en compte ( exemple:.play Musique 2018 ) Seulement les liens ! ( ex: https://www.youtube.com/watch?v=ooooo")
         .setTimestamp()
     message.author.sendEmbed(embedsix)
         var embedtwo = new Discord.RichEmbed()
@@ -226,6 +226,20 @@ bot.on('message', message => {
         message.channel.sendMessage(thingToEcho)
     } else {
         message.reply(`tu n'as pas la permission de faire cette commande.`)
+    
+    }
+
+    if (message.content === prefix + "musique")
+        var embedsix = new Discord.RichEmbed()
+            .setTitle("Musique [ Nouveau ]")
+            .setDescription("Commande musique:")
+            .addField(".play", "Ecouter une musique YouTube | Vous pouvez ajouter plusieurs musique avec le .play afin de créer un playlist", true)
+            .addField(".skip", "Passer à la musique suivante", true)
+            .addField(".stop", "Arrêter la musique", true)             
+            .setColor("0xDF01D7")
+            .setFooter("Les recherches ne sont pas prit en compte ( exemple:.play Musique 2018 ) Seulement les liens ! ( ex: https://www.youtube.com/watch?v=ooooo")
+            .setTimestamp()
+    message.author.sendEmbed(embedsix)
 
 
 
@@ -239,7 +253,7 @@ bot.on('message', message => {
     } else {
         message.reply(`tu n'as pas la permission de faire cette commande.`)
 
-}}}}
+}}}
 
 })
 
