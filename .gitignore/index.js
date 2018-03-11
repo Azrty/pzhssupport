@@ -72,9 +72,9 @@ bot.on("message", function(message) {
 bot.on("guildMemberAdd", member => {
     var embed = new Discord.RichEmbed()
         .setDescription("Activités")
-        .addField("Un nouvelle utilisateur vien d'arriver !", `Il sagit de ${member} !`)
+        .addField("Un nouvel utilisateur vient d'arriver !", `Il s'agit de ${member} !`)
         .addField("Bienvenue parmis la PZH's Community", "Si tu as des questions, n'hésite pas")
-        .addField("Ma commande est .help", "Si tu souhaites savoir mes fonctionnalitées.")
+        .addField("Ma commande est .help", "Si tu souhaites savoir mes fonctionnalités.")
         .addField(`Nombre d'utilisateurs sur le discord après l'arrivée de ${member.user.username}`, member.guild.memberCount)
         .setColor("0x04B404")
     member.guild.channels.find("name", "general").sendEmbed(embed)
