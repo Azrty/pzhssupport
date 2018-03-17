@@ -256,11 +256,6 @@ bot.on('message', message => {
         .setColor("0x0000FF")
     message.channel.sendEmbed(embed)   
     
-
-
-    if (message.content === prefix + "avatar") {
-        message.reply(message.author.avatarURL)
-
     }
 
     if (message.content === prefix + "musique")
