@@ -255,8 +255,6 @@ bot.on('message', message => {
         .addField("Utilisateurs sur le discord", message.guild.memberCount)
         .setColor("0x0000FF")
     message.channel.sendEmbed(embed)   
-    
-    }
 
     if (message.content === prefix + "musique")
     var embedsix = new Discord.RichEmbed()
