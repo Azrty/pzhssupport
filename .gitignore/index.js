@@ -72,7 +72,7 @@ bot.on("message", function(message) {
 bot.on("guildMemberAdd", member => {
     var embed = new Discord.RichEmbed()
         .setDescription("Activités")
-        .addField("Un nouvel utilisateur vient d'arriver !", `Il s'agit de [${member.user.username}](https://discord.gg/cFcs8KE) !`)
+        .addField("Un nouvel utilisateur vient d'arriver !", `Il s'agit de [${member.user.username}](https://discord.gg/K8v3cpU) !`)
         .addField("Bienvenue parmis la PZH's Community", "Si tu as des questions, n'hésite pas")
         .addField("Ma commande est .help", "Si tu souhaites savoir mes fonctionnalités.")
         .addField(`Nombre d'utilisateurs sur le discord après l'arrivée de ${member.user.username}`, member.guild.memberCount)
@@ -83,7 +83,7 @@ bot.on("guildMemberAdd", member => {
 bot.on("guildMemberRemove", member =>{
     var embed = new Discord.RichEmbed()
         .setDescription("Activités")
-        .addField("Un utilisateur vien de quitter", `Il sagit de [${member.user.username}](https://discord.gg/cFcs8KE)...`)
+        .addField("Un utilisateur vien de quitter", `Il sagit de [${member.user.username}](https://discord.gg/K8v3cpU)...`)
         .addField("Au revoir...", "Nous espérons vous revoir bientôt.")
         .addField(`Nombre d'utilisateurs sur le discord après le départ de ${member.user.username}`, member.guild.memberCount)
         .setColor("0xB40404")
