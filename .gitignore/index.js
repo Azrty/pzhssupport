@@ -297,7 +297,7 @@ bot.on('message', message => {
     }
 
     if (message.content.startsWith(prefix + "avatar")) {
-        if (!message.mentions.users.first()) return message.channel.send("**❌ | Entrez un utilisateur.**")
+        if (!message.mentions.users.first()) return message.channel.send("Merci de mentionner un utilisateur")
             let user = message.mentions.users.first() ? message.mentions.users.first() : message.author
             let ava = user.displayAvatarURL
             let embed = {
