@@ -274,7 +274,39 @@ bot.on('message', message => {
         .setFooter("Les recherches ne sont pas prit en compte ( exemple:.play Musique 2018 ) Seulement les liens ! ( ex: https://www.youtube.com/watch?v=ooooo")
         .setTimestamp()
     message.channel.sendEmbed(embedsix)
-      
-})
 
+
+    if (message.content.startsWith(prefix + "sondage")) {
+        if(message.author.id == "330762245921439754"){
+            let args = message.content.split(" ").slice(1);
+            let thingToEcho = args.join(" ")
+            var embed = new Discord.RichEmbed()
+                .setDescription("Sondage")
+                .addField(thingToEcho, "Répondre avec :white_check_mark: ou :x:")
+                .setColor("0xB40404")
+                .setTimestamp()
+        message.guild.channels.find("name", "sondage").sendEmbed(embed)
+        .then(function (message) {
+            message.react("✅")
+            message.react("❌")
+        }).catch(function() {
+        });
+        }else{
+            return message.reply("Tu n'as pas la permission.")
+
+    }
+
+    if (message.content.startsWith(prefix + "avatar")) {
+        if (!message.mentions.users.first()) return message.channel.send("**❌ | Entrez un utilisateur.**")
+            let user = message.mentions.users.first() ? message.mentions.users.first() : message.author
+            let ava = user.displayAvatarURL
+            let embed = {
+            color:0x1100FF,
+            description:"Avatar de "+user.username+"",
+            image:{url:ava}
+            }
+        message.channel.send("", {embed})
+}
+      
+}})
 
