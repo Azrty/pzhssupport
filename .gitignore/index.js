@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 var bot = new Discord.Client();
 var prefix = (".");
 const YTDL = require("ytdl-core");
-bot.login(process.env.TOKEN);
+bot.login("NDE5ODYzOTAwNDQ4NzUxNjI3.DY_58A.Qhj7vmED_k-tfhNoFQ2w7jOtR1M");
 
 function play(connection, message) {
     var server = servers[message.guild.id];
@@ -68,6 +68,86 @@ bot.on("message", function(message) {
             break;
     }
 });
+
+bot.on('message', message => {
+
+    if (message.content.startsWith(prefix + "avatar")) {
+        if (!message.mentions.users.first()) return message.channel.send("Merci de mentionner un utilisateur")
+            let user = message.mentions.users.first() ? message.mentions.users.first() : message.author
+            let ava = user.displayAvatarURL
+            let embed = {
+            color:0x1100FF,
+            description:"Avatar de "+user.username+"",
+            image:{url:ava}
+            }
+        message.channel.send("", {embed})
+};
+
+bot.on('message', message => {
+
+    if (message.content === prefix + "helpmod") {
+        let modRole = message.guild.roles.find("name", "Modérateurs");
+        if(message.member.roles.has(modRole.id)) {
+            var embed = new Discord.RichEmbed()
+            .setTitle("Modération")
+            .setDescription("Commande Modérateur")
+            .addField(".ban", "Bannir un utilisateur.", true)
+            .addField(".kick", "Expulser un utilisateur.", true)      
+            .setColor("0xFF8000")
+        message.author.sendEmbed(embed)
+        message.react("✉")
+        message.reply("La liste des commandes vous a été envoyé en message privée. :envelope:")
+        .then(function (message) {
+            message.react("✅")
+        }).catch(function() {
+        });
+        }else{
+            return message.reply("Tu n'as pas la permission de faire cette commande.")
+};
+
+bot.on('message', message => {
+
+    if (message.content === prefix + "helpadmin"){
+        let modRole = message.guild.roles.find("name", "Admins");
+        if(message.member.roles.has(modRole.id)) {
+            var embed = new Discord.RichEmbed()
+            .setTitle("Administration")
+            .setDescription("Commande Administrateur")
+            .addField(".say", "Faire parler le bot", true)
+            .addField(".sayge", "Faire parler le bot via un channel externe", true)      
+            .setColor("0xFF0000")
+        message.author.sendEmbed(embed)
+        message.react("✉")
+        message.reply("La liste des commandes ADMIN vous a été envoyé en message privée. :envelope:")
+        .then(function (message) {
+            message.react("✅")
+        }).catch(function() {
+        });
+        }else{
+            return message.reply("Tu n'as pas la permission de faire cette commande.")
+};
+
+bot.on('message', message => {
+    if (message.content.startsWith(prefix + "newvideo")) {
+        if(message.author.id == "330762245921439754"){
+            let args = message.content.split(" ").slice(1);
+            let thingToEcho = args.join(" ")
+            var embed = new Discord.RichEmbed()
+                .setDescription("News")
+                .addField("Nouvelle vidéo de PZH", thingToEcho)
+                .setColor("0xB40404")
+                .setTimestamp()
+        message.guild.channels.find("name", "news").sendEmbed(embed)
+        .then(function (message) {
+            message.react("✅")
+            message.react("❌")
+        }).catch(function() {
+        });
+        }else{
+            return message.reply("Tu n'as pas la permission.")
+
+
+};
 
 bot.on("guildMemberAdd", member => {
     var embed = new Discord.RichEmbed()
@@ -171,50 +251,18 @@ bot.on('message', message => {
         .setTitle("===== AIDE =====")
         .setDescription("Disponibilité des commandes:")
         .addField(".info", "Information sur le Bot Support", true)
-        .addField(".yt", "Envoie le lien de la chaîne YouTube de [PZH](https://www.youtube.com/c/pzhcodage) Ou cliquer sur PZH dans ce message", true)          
+        .addField(".yt", "Envoie le lien de la chaîne YouTube de [PZH](https://www.youtube.com/c/pzhcodage) Ou cliquer sur PZH dans ce message", true)
+        .addField(".infodiscord", "Information du discord", true)
+        .addField(".helpadmin", "Commande modérateur", true)
+        .addField(".helpmod", "Commande administrateur", true)  
+        .addField(".avatar", "Voir l'avatar des autres")   
         .setColor("0x04B404")
-        .setFooter("Bon moment parmis la PZH's Community")
     message.author.sendEmbed(embed)
-    message.channel.sendMessage(`${message.author.username}, la page d'aide a été envoyé en message privée :thumbsup:`)
-        var embedsix = new Discord.RichEmbed()
-        .setTitle("Musique [ Nouveau ]")
-        .setDescription("Commande musique:")
-        .addField(".play", "Ecouter une musique YouTube | Vous pouvez ajouter plusieurs musique avec le .play afin de créer un playlist", true)
-        .addField(".skip", "Passer à la musique suivante", true)
-        .addField(".stop", "Arrêter la musique", true)             
-        .setColor("0xDF01D7")
-        .setFooter("Les recherches ne sont pas prit en compte ( exemple:.play Musique 2018 ) Seulement les liens ! ( ex: https://www.youtube.com/watch?v=ooooo")
-        .setTimestamp()
-    message.author.sendEmbed(embedsix)
-        var embedtwo = new Discord.RichEmbed()
-        .setTitle("Modération")
-        .setDescription("Commande Modérateur")
-        .addField(".ban", "Bannir un utilisateur.", true)
-        .addField(".kick", "Expulser un utilisateur.", true)      
-        .setColor("0xFF8000")
-    message.author.sendEmbed(embedtwo)
-        var embedthree = new Discord.RichEmbed()
-        .setTitle("Administration")
-        .setDescription("Commande Administrateur")
-        .addField(".say", "Faire parler le bot", true)
-        .addField(".sayge", "Faire parler le bot via un channel externe", true)      
-        .setColor("0xFF0000")
-    message.author.sendEmbed(embedthree)
-        var embedfour = new Discord.RichEmbed()
-        .setTitle("UM")
-        .setDescription("Update | Modification")
-        .addField("Cmd .support supprimé.", "Raison: innutile.", true)
-        .addField("Cmd .xp supprimé.", "Raison: Innutile et bouffeur de mémoire.", true)         
-        .setColor("0xFE2E2E")
-    message.author.sendEmbed(embedfour)
-        var embedfive = new Discord.RichEmbed()
-        .setTitle("Information")
-        .setDescription("Liste des informations:")
-        .addField("Apprend à coder un bot discord !", "Suivez les tuto de [PZH](https://www.youtube.com/c/pzhcodage) sur sa chaîne youtube !", true)       
-        .setColor("0xFFFF00")
-        .setFooter("Bon moment parmis la PZH's Community")
-        .setTimestamp()
-    message.author.sendEmbed(embedfive)
+    message.react("✉")
+    message.reply("La liste des commandes vous a été envoyé en message privée. :envelope:")
+    .then(function (message) {
+        message.react("✅")
+    })
 
     }
     
@@ -289,17 +337,6 @@ bot.on('message', message => {
 
     }
 
-    if (message.content.startsWith(prefix + "avatar")) {
-        if (!message.mentions.users.first()) return message.channel.send("Merci de mentionner un utilisateur")
-            let user = message.mentions.users.first() ? message.mentions.users.first() : message.author
-            let ava = user.displayAvatarURL
-            let embed = {
-            color:0x1100FF,
-            description:"Avatar de "+user.username+"",
-            image:{url:ava}
-            }
-        message.channel.send("", {embed})
-}
       
-}})
+}})}})}})}})})
 
