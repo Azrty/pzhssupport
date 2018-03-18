@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 var bot = new Discord.Client();
 var prefix = (".");
 const YTDL = require("ytdl-core");
-bot.login(process.env.token);
+bot.login(process.env.TOKEN);
 
 function play(connection, message) {
     var server = servers[message.guild.id];
