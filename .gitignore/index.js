@@ -54,17 +54,20 @@ bot.on("message", function(message) {
 
             if (!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection) {
                 play(connection, message);
+                message.channel.sendMessage("Musique lancé. Si la musique ne ce lance pas, merci de vérifier si le lien est valide et ne contient pas de copyright.")
             });
             break;
         case "skip":
             var server = servers[message.guild.id];
 
             if (server.dispatcher) server.dispatcher.end();
+                message.channel.sendMessage("Musique skip ! Si le bot s'arrête, vérifier bien que vous avez mit un deuxième lien ou que celui-ci est valide")
             break;
         case "stop":
             var server = servers[message.guild.id];
 
             if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
+                message.channel.sendMessage("La musique a été arrêté.")
             break;
     }
 });
