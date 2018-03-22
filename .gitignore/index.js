@@ -80,7 +80,7 @@ bot.on("guildMemberAdd", member => {
         .addField("Ma commande est .help", "Si tu souhaites savoir mes fonctionnalités.")
         .addField(`Nombre d'utilisateurs sur le discord après l'arrivée de ${member.user.tag}`, member.guild.memberCount)
         .setColor("0x04B404")
-    member.guild.channels.find("name", "general").sendEmbed(embed)
+    member.guild.channels.find("name", "welcome").sendEmbed(embed)
 })
 
 bot.on("guildMemberRemove", member =>{
@@ -90,7 +90,7 @@ bot.on("guildMemberRemove", member =>{
         .addField("Au revoir...", "Nous espérons vous revoir bientôt.")
         .addField(`Nombre d'utilisateurs sur le discord après le départ de ${member.user.tag}`, member.guild.memberCount)
         .setColor("0xB40404")
-    member.guild.channels.find("name", "general").sendEmbed(embed)
+    member.guild.channels.find("name", "welcome").sendEmbed(embed)
 })
 
 bot.on('guildMemberAdd', member => {
