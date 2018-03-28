@@ -20,7 +20,7 @@ function play(connection, message) {
 var servers = {};
 
 bot.on("ready", function() {
-    bot.user.setActivity("!help | V 5.0")
+    bot.user.setActivity(".help | By PZH#8058")
     console.log("Connecté");
 });
 
@@ -111,8 +111,8 @@ bot.on("message", function(message) {
                 .setDescription("Information du bot")
                 .addField("Création", "Le 10/01/2018 à 17h17", true)
                 .addField("Créateur", "Crée par [PZH](https://www.youtube.com/c/pzhcodage)", true)
-                .addField("Version du bot", "Version 5.0", true)
-                .addField("Dernière mise à jour:", "Le 28/03/2018 à 18:17", true)
+                .addField("Version du bot", "Version 4.0", true)
+                .addField("Dernière mise à jour:", "Le 05/03/2018 à 18:02", true)
                 .addField("à savoir", "Si vous cliquez sur [PZH](https://www.youtube.com/c/pzhcodage), cela vous redirigera sur sa chaîne YouTube", true)
                 .setColor("0xE74C3C")
                 .addField("Apprend à coder un bot discord !", "Suivez les tuto de [PZH](https://www.youtube.com/c/pzhcodage) sur sa chaîne youtube !", true)
@@ -138,16 +138,16 @@ bot.on("message", function(message) {
             let modRoleee = message.guild.roles.find("name", "Admins");
             if(message.member.roles.has(modRoleee.id)) {
             message.delete();
-            let args = message.content.split(" ").slice(1);
-            let thingToEcho = args.join(" ")
+            let argse = message.content.split(" ").slice(1);
+            let thingToEcho = argse.join(" ")
             message.channel.sendMessage(thingToEcho)
         }else{
             message.reply(`tu n'as pas la permission de faire cette commande.`)}
             break;
         case "sondage":
             if(!message.member.hasPermission("ADMINISTRATOR")) {
-                let args = message.content.split(" ").slice(1);
-                let thingToEcho = args.join(" ")
+                let argsee = message.content.split(" ").slice(1);
+                let thingToEcho = argsee.join(" ")
                 var embed = new Discord.RichEmbed()
                     .setDescription("Sondage")
                     .addField(thingToEcho, "Répondre avec :white_check_mark: ou :x:")
@@ -186,8 +186,8 @@ bot.on("message", function(message) {
             break;
         case "newvideo":
             if(message.author.id == "330762245921439754"){
-                let args = message.content.split(" ").slice(1);
-                let thingToEcho = args.join(" ")
+                let argseee = message.content.split(" ").slice(1);
+                let thingToEcho = argseee.join(" ")
                 var embed = new Discord.RichEmbed()
                     .setDescription("News")
                     .addField("Nouvelle vidéo de PZH", thingToEcho)
@@ -204,8 +204,8 @@ bot.on("message", function(message) {
             break;
         case "kick":
             let command = message.content.split(" ")[0];
-            const args = message.content.slice(prefix.length).split(/ +/);
-            command = args.shift().toLowerCase();
+            const argseeeee = message.content.slice(prefix.length).split(/ +/);
+            command = argseeeee.shift().toLowerCase();
     
             if (command === "kick") {
                 let modRole = message.guild.roles.find("name", "Modérateurs");
@@ -228,8 +228,8 @@ bot.on("message", function(message) {
             break;
         case "ban":
         let commande = message.content.split(" ")[0];
-        const argse = message.content.slice(prefix.length).split(/ +/);
-        commande = argse.shift().toLowerCase();
+        const argseeeeee = message.content.slice(prefix.length).split(/ +/);
+        commande = argseeeeee.shift().toLowerCase();
             if (commande === "ban") {
                 let modRole = message.guild.roles.find("name", "Modérateurs");
                 if(!message.member.roles.has(modRole.id)) {
