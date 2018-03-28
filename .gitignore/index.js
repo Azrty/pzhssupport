@@ -20,7 +20,7 @@ function play(connection, message) {
 var servers = {};
 
 bot.on("ready", function() {
-    bot.user.setActivity(".help | By PZH#8058")
+    bot.user.setActivity("!help | V.5.0")
     console.log("Connecté");
 });
 
@@ -111,8 +111,8 @@ bot.on("message", function(message) {
                 .setDescription("Information du bot")
                 .addField("Création", "Le 10/01/2018 à 17h17", true)
                 .addField("Créateur", "Crée par [PZH](https://www.youtube.com/c/pzhcodage)", true)
-                .addField("Version du bot", "Version 4.0", true)
-                .addField("Dernière mise à jour:", "Le 05/03/2018 à 18:02", true)
+                .addField("Version du bot", "Version 5.0", true)
+                .addField("Dernière mise à jour:", "Le 28/03/2018 à 18:39", true)
                 .addField("à savoir", "Si vous cliquez sur [PZH](https://www.youtube.com/c/pzhcodage), cela vous redirigera sur sa chaîne YouTube", true)
                 .setColor("0xE74C3C")
                 .addField("Apprend à coder un bot discord !", "Suivez les tuto de [PZH](https://www.youtube.com/c/pzhcodage) sur sa chaîne youtube !", true)
