@@ -240,6 +240,33 @@ bot.on("message", function(message) {
                     message.reply(`${member.user.username} a été banni avec succès.`).catch(console.error);
                 }).catch(console.error)}
             break;
+        case "roll":
+            var roll = Math.floor(Math.random() * args[1]) +1;
+            message.channel.send("Je choisis le numéro " + roll + " !");
+            break;
+        case "8ball":
+        let argsed = message.content.split(" ").slice(1);
+        let tte = argsed.join(" ")
+        if (!tte){
+            return message.reply("Merci de poser une question. :8ball:")};
+
+                var replys = [
+                "Oui.",
+                "Non.",
+                "Je ne sais pas.",
+                "Peut-être.",
+                "Probablement."
+                ];
+            
+            let reponse = (replys[Math.floor(Math.random() * replys.length)])
+            var ballembed = new Discord.RichEmbed()
+            .setDescription(":8ball: 8ball")
+            .addField("Question", tte)
+            .addField("Réponse", reponse)
+            .setColor("0x40FF00")
+        message.channel.sendEmbed(ballembed)
+            break;
+
         default:
             var embed = new Discord.RichEmbed()
             .setDescription(":x: Erreur ! La commande saisie est incorrecte. :x:")
