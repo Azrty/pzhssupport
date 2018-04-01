@@ -242,6 +242,7 @@ bot.on("message", function(message) {
             break;
         case "roll":
             var roll = Math.floor(Math.random() * args[1]) +1;
+            if (!roll) return message.reply("Entre un numéro.")
             message.channel.send("Je choisis le numéro " + roll + " !");
             break;
         case "8ball":
