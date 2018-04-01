@@ -124,7 +124,7 @@ bot.on("message", function(message) {
             var embed = new Discord.RichEmbed()
             .setDescription("Help Menu")
             .addField("Utilitaire", "``!serverinfo \n !info \n !yt \n !avatar \n !musique``")
-            .addField("Divertissement [Indisponible actuellement]", "``!bingo \n !8ball \n !random \n !pfc``")
+            .addField("Divertissement [Indisponible actuellement]", "``!roll \n !8ball \n !random \n !pfc``")
             .addField("Musique", "``!play \n !skip \n !stop``")  
             .addField("Modération", "``!ban \n !kick \n !mute \n !purge \n !helpmod``")
             .addField("Administration", "``!sondage \n !say \n !helpadmin``")
