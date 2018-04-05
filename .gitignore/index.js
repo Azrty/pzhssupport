@@ -144,7 +144,7 @@ bot.on("message", function(message) {
             message.reply(`tu n'as pas la permission de faire cette commande.`)}
             break;
         case "sondage":
-            if(!message.member.hasPermission("ADMINISTRATOR")) {
+            if(message.member.hasPermission("ADMINISTRATOR")) {
                 let argsee = message.content.split(" ").slice(1);
                 let thingToEcho = argsee.join(" ")
                 var embed = new Discord.RichEmbed()
