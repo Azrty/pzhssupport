@@ -320,7 +320,7 @@ bot.on('message', message => {
     if (message.content === prefix + "notification off") {
         var roledel = message.guild.roles.find('name', 'Notification');
                 message.member.removeRole(roledel)
-                var embednoff = new Discord.RichEmbed()
+                var embedoff = new Discord.RichEmbed()
                     .setDescription("Notification")
                     .addField("Succès ! Vous avez bien désactivé vos notifications.", "Vous pouvez à tout instant réactiver les notifications avec la commande [!notification on](https://discord.gg/DRuyt7Q )")
                     .setColor("0xD7DF01")
