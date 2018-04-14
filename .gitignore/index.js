@@ -319,6 +319,6 @@ bot.on('message', message => {
                     .setDescription(`${message.author.tag} vient de désactiver ses notifications`)
                 message.guild.channels.find("name", "infopzh").sendEmbed(embednotif)
                 if (!role) return message.reply("Une erreur est survenue ! Réssayer plus tard.")
-    }
+    }})
 
 
