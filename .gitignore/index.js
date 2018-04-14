@@ -267,7 +267,7 @@ bot.on("message", function(message) {
             .setColor("0x40FF00")
         message.channel.sendEmbed(ballembed)
             break;
-        case "notification on":
+        case "notificationon":
             var role = member.guild.roles.find('name', 'Notification');
                 member.addRole(role)
                 message.channel.sendMessage("Succès ! Vous serez désormais informé des nouveautés ou informations \n Vous pouvez à tout instant désactiver les notifications avec la commande !notification off")
@@ -276,7 +276,7 @@ bot.on("message", function(message) {
                 message.guild.channels.find("name", "infopzh").sendEmbed(embednotiff)
             if (!role) return message.reply("Une erreur est survenue ! Rôle non trouvé. Réssayer plus tard.")
             break;
-        case "notification off":
+        case "notificationoff":
                 var roledel = member.guild.roles.find('name', 'Notification');
                 member.removeRole(roledel)
                 message.channel.sendMessage("Succès ! Vous avez bien désactivé vos notifications \n Vous pouvez à tout instant réactiver les notifications avec la commande !notification on")
