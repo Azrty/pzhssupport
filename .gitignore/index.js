@@ -303,8 +303,8 @@ bot.on('guildMemberAdd', member => {
 bot.on('message', message => {
 
     if (message.content === prefix + "notification on") {
-            var role = member.guild.roles.find('name', 'Notification');
-                member.addRole(role)
+            var role = message.author.guild.roles.find('name', 'Notification');
+                message.author.addRole(role)
                 message.channel.sendMessage("Succès ! Vous serez désormais informé des nouveautés ou informations \n Vous pouvez à tout instant désactiver les notifications avec la commande !notification off")
                 var embednotiff = new Discord.RichEmbed()
                     .setDescription(`${message.author.tag} vient d'activer ses notifications`)
@@ -312,8 +312,8 @@ bot.on('message', message => {
             if (!role) return message.reply("Une erreur est survenue ! Rôle non trouvé. Réssayer plus tard.")
     }
     if (message.content === prefix + "notification off") {
-        var roledel = member.guild.roles.find('name', 'Notification');
-                member.removeRole(roledel)
+        var roledel = message.author.guild.roles.find('name', 'Notification');
+                message.author.removeRole(roledel)
                 message.channel.sendMessage("Succès ! Vous avez bien désactivé vos notifications \n Vous pouvez à tout instant réactiver les notifications avec la commande !notification on")
                 var embednotif = new Discord.RichEmbed()
                     .setDescription(`${message.author.tag} vient de désactiver ses notifications`)
