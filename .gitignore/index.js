@@ -305,11 +305,11 @@ bot.on('message', message => {
     if (message.content === prefix + "notification on") {
             var role = message.guild.roles.find('name', 'Notification');
                 message.member.addRole(role)
-                var embednoff = new Discord.RichEmbed()
+                var embednon = new Discord.RichEmbed()
                     .setDescription("Notification")
                     .addField("Succès ! Vous avez bien activé vos notifications.", "Vous pouvez à tout instant désactiver les notifications avec la commande [!notification off](https://discord.gg/DRuyt7Q )")
                     .setColor("0xD7DF01")
-                message.channel.sendEmbed(embed)
+                message.channel.sendEmbed(embedon)
                 var embednotiff = new Discord.RichEmbed()
                     .setDescription(`${message.author.tag} vient d'activer ses notifications`)
                     .setTimestamp()
@@ -324,7 +324,7 @@ bot.on('message', message => {
                     .setDescription("Notification")
                     .addField("Succès ! Vous avez bien désactivé vos notifications.", "Vous pouvez à tout instant réactiver les notifications avec la commande [!notification on](https://discord.gg/DRuyt7Q )")
                     .setColor("0xD7DF01")
-                message.channel.sendEmbed(embed)
+                message.channel.sendEmbed(embedoff)
                 var embednotif = new Discord.RichEmbed()
                     .setDescription(`${message.author.tag} vient de désactiver ses notifications`)
                     .setTimestamp()
