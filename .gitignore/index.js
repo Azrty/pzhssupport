@@ -123,8 +123,8 @@ bot.on("message", function(message) {
         case "help":
             var embed = new Discord.RichEmbed()
             .setDescription("Help Menu")
-            .addField("Utilitaire", "``!serverinfo \n !info \n !yt \n !avatar \n !musique``")
-            .addField("Divertissement [Indisponible actuellement]", "``!roll \n !8ball \n !random \n !pfc``")
+            .addField("Utilitaire", "``!serverinfo \n !yt \n !avatar \n !musique \n !notification``")
+            .addField("Divertissement", "``!roll \n !8ball``")
             .addField("Musique", "``!play \n !skip \n !stop``")  
             .addField("Modération", "``!ban \n !kick \n !mute \n !purge \n !helpmod``")
             .addField("Administration", "``!sondage \n !say \n !helpadmin``")
@@ -267,12 +267,26 @@ bot.on("message", function(message) {
             .setColor("0x40FF00")
         message.channel.sendEmbed(ballembed)
             break;
-
-        default:
-            var embed = new Discord.RichEmbed()
-            .setDescription(":x: Erreur ! La commande saisie est incorrecte. :x:")
-            .setColor("0xFF0000")
-        message.channel.sendEmbed(embed)
+        case "notification on":
+            var role = member.guild.roles.find('name', 'Notification');
+                member.addRole(role)
+                message.channel.sendMessage("Succès ! Vous serez désormais informé des nouveautés ou informations \n Vous pouvez à tout instant désactiver les notifications avec la commande !notification off")
+                var embednotiff = new Discord.RichEmbed()
+                    .setDescription(`${message.author.tag} vient d'activer ses notifications`)
+                message.guild.channels.find("name", "infopzh").sendEmbed(embednotiff)
+            if (!role) return message.reply("Une erreur est survenue ! Rôle non trouvé. Réssayer plus tard.")
+            break;
+        case "notification off":
+                var roledel = member.guild.roles.find('name', 'Notification');
+                member.removeRole(roledel)
+                message.channel.sendMessage("Succès ! Vous avez bien désactivé vos notifications \n Vous pouvez à tout instant réactiver les notifications avec la commande !notification on")
+                var embednotif = new Discord.RichEmbed()
+                    .setDescription(`${message.author.tag} vient de désactiver ses notifications`)
+                message.guild.channels.find("name", "infopzh").sendEmbed(embednotif)
+                if (!role) return message.reply("Une erreur est survenue ! Réssayer plus tard.")
+            break;
+            
+        
 
 
     
