@@ -277,22 +277,23 @@ bot.on("message", function(message) {
 bot.on("guildMemberAdd", member => {
     var embed = new Discord.RichEmbed()
         .setDescription("Activités")
-        .addField("Un nouvel utilisateur vient d'arriver !", `Il s'agit de [${member.user.tag}](https://discord.gg/K8v3cpU) !`)
+        .addField("Arrivée", `> [${member.user.tag}](https://discord.gg/K8v3cpU) <`)
         .addField("Bienvenue parmis la PZH's Community", "Si tu as des questions, n'hésite pas")
-        .addField("Ma commande est .help", "Si tu souhaites savoir mes fonctionnalités.")
         .addField(`Nombre d'utilisateurs sur le discord après l'arrivée de ${member.user.tag}`, member.guild.memberCount)
-        .setColor("0x04B404")
+        .setColor("0xACF938")
     member.guild.channels.find("name", "welcome").sendEmbed(embed)
+    member.guild.channels.find("name", "general").sendMessage(`Bienvenue ${member} !\nN'oublie pas de consulter le #reglement`)
 })
 
 bot.on("guildMemberRemove", member =>{
     var embed = new Discord.RichEmbed()
         .setDescription("Activités")
-        .addField("Un utilisateur vien de quitter", `Il sagit de [${member.user.tag}](https://discord.gg/K8v3cpU)...`)
+        .addField("Départ", `> [${member.user.tag}](https://discord.gg/K8v3cpU) <`)
         .addField("Au revoir...", "Nous espérons vous revoir bientôt.")
         .addField(`Nombre d'utilisateurs sur le discord après le départ de ${member.user.tag}`, member.guild.memberCount)
-        .setColor("0xB40404")
+        .setColor("0xFD6464")
     member.guild.channels.find("name", "welcome").sendEmbed(embed)
+    
 })
 
 bot.on('guildMemberAdd', member => {
