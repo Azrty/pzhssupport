@@ -276,6 +276,7 @@ bot.on("message", function(message) {
 
 bot.on("guildMemberAdd", member => {
     var embed = new Discord.RichEmbed()
+        .setImage(`${member.user.avatarURL}`)
         .setDescription("Activités")
         .addField("Arrivée", `> [${member.user.tag}](https://discord.gg/K8v3cpU) <`)
         .addField("Bienvenue parmis la PZH's Community", "Si tu as des questions, n'hésite pas")
