@@ -174,13 +174,14 @@ bot.on("message", function(message) {
             message.channel.sendEmbed(embedsix)
             break;
         case "serverinfo":
+            var channeljoin = bot.channels.get("name", "reglement").id; 
             var embed = new Discord.RichEmbed()
                 .setDescription("Information du Discord")
                 .addField("Nom du Discord", message.guild.name)
                 .addField("Crée le", message.guild.createdAt)
                 .addField("Tu as rejoin le", message.member.joinedAt)
                 .addField("Utilisateurs sur le discord", message.guild.memberCount)
-                .addField("Test", "test <#" + channel.id + ">")
+                .addField("Test", `<#${channeljoin}`)
                 .setColor("0x0000FF")
             message.channel.sendEmbed(embed)
             break;
