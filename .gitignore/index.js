@@ -180,7 +180,7 @@ bot.on("message", function(message) {
                 .addField("Crée le", message.guild.createdAt)
                 .addField("Tu as rejoin le", message.member.joinedAt)
                 .addField("Utilisateurs sur le discord", message.guild.memberCount)
-                .addField("Test", "test <# + channel.id + >)
+                .addField("Test", "test <# + channel.id + >")
                 .setColor("0x0000FF")
             message.channel.sendEmbed(embed)
             break;
