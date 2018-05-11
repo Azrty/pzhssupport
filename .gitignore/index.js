@@ -131,7 +131,7 @@ bot.on("message", function(message) {
             .setColor("0x00BFFF")
         message.author.sendEmbed(embed)
         message.react("✉")
-        message.reply("La liste des commandes vous a été envoyé en message privée. :envelope: <#405705028783964170>")
+        message.reply("La liste des commandes vous a été envoyé en message privée. :envelope:")
             break;
         case "say":
             let modRoleee = message.guild.roles.find("name", "Admins");
@@ -284,7 +284,7 @@ bot.on("guildMemberAdd", member => {
         .addField(`Nombre d'utilisateurs sur le discord après l'arrivée de ${member.user.tag}`, member.guild.memberCount)
         .setColor("0xACF938")
     member.guild.channels.find("name", "welcome").sendEmbed(embed)
-    member.guild.channels.find("name", "general").sendMessage(`Bienvenue ${member} !\nN'oublie pas de consulter le #reglement`)
+    member.guild.channels.find("name", "general").sendMessage(`Bienvenue ${member} !\nN'oublie pas de consulter le <#405705028783964170>`)
 })
 
 bot.on("guildMemberRemove", member =>{
