@@ -77,7 +77,7 @@ bot.on("message", function(message) {
                 .setColor("0xFF8000")
             message.author.sendEmbed(embed)
             message.react("✉")
-            message.reply("La liste des commandes vous a été envoyé en message privée. :envelope:")
+            message.reply("La liste des commandes vous a été envoyé en message privée. :envelope: <#405705028783964170>")
             }else{
                 return message.reply("Tu n'as pas la permission de faire cette commande.")}
             break;
